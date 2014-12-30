@@ -6,7 +6,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 DATABASE = 'flasktaskr.db'
-DEBUG = False
+DEBUG = True
 #USERNAME = 'admin'
 #PASSWORD = 'password'
 WTF_CSRF_ENABLED = True

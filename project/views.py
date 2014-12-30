@@ -6,7 +6,9 @@
 
 
 from project import app, db
-from flask import flash, redirect, session, url_for, render_template, request
+from project.models import Task
+from flask import flash, redirect, session, url_for, render_template, \
+	 request, jsonify
 from functools import wraps
 import datetime
 
@@ -70,10 +72,45 @@ def internal_error(error):
 	return render_template('505.html'), 505
 
 
+#####################
+#### api methods ####
+#####################
 
+@app.route('/api/tasks/', methods=['GET'])
+def tasks():
+	if request.method == 'GET':
+		results = db.session.query(Task).limit(10).offset(0).all()
+		json_results = []
+		for result in results:
+			data = {
+					'task_id' : result.task_id,
+					'task name' : result.name,
+					'due date' : str(result.due_date),
+					'priority' : result.priority,
+					'posted date' : str(result.posted_date),
+					'status' : result.status,
+					'user id' : result.user_id
+				}
+			json_results.append(data)
 
+		return jsonify(items=json_results)
 
+@app.route('/api/tasks/<int:task_id>')
+def task(task_id):
+	if request.method == 'GET':
+		result = db.session.query(Task).filter_by(task_id=task_id).first()
 
+	json_results = {
+		'task_id': result.task_id,
+		'task name': result.name,
+		'due data': str(result.due_date),
+		'priority': result.priority,
+		'posted date': str(result.posted_date),
+		'status': result.status,
+		'user id': result.user_id 
+	}
+
+	return jsonify(items=json_results)
 
 
 
