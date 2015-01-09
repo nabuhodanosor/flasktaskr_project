@@ -12,5 +12,5 @@ deploy:
     secure: Eyr5hVRc3xdo8Z0MenQFHdueYKyFwhB3xXpXuEB77rAt0bdSqBBVHPyhJNL5Uj2Wo7CXOjNpHS6aL8TkxtLmQ1QKTIu/qne0DSBJhqp+U/LiUMdMpsE9WSndH1vtYxBGq240suq6XZI5gv4NN/G0CI1ozr8Dv6ctpQCXHD+nb84=
   app: radiant-forest-3875
   on:
-  	branch: master
+    branch: master
     repo: nabuhodanosor/flasktaskr_project
