@@ -86,6 +86,10 @@ class MainTests(unittest.TestCase):
 		self.assertIn('Purchase Real Python', response.data)
 		self.assertNotIn('Run around in circles', response.data)
 
+	def test_index(self):
+		""" Ensure flask was set up correctly. """
+		response = self.app.get('/', content_type='html/text')
+		self.assertEquals(response.status_code, 200)
 
 
 
